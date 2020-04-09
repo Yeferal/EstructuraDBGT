@@ -1,0 +1,1 @@
+CREATE TABLE tabla1 ( col1 Int, col2 Double,col3 String,col4 Char );

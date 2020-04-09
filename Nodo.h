@@ -29,6 +29,11 @@ public:
 public:
     string texto;
     int peso;
+    int FE;
+    int alturaDerecha;
+    int alturaIzquierda;
+    int altura;
+    int isRaiz;
     string columna;
     Nodo *registroIzquierda;
     Nodo *registroDerecha;

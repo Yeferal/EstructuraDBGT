@@ -1,15 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/* 
- * File:   Tabla.h
- * Author: yefer
- *
- * Created on 6 de abril de 2020, 02:56 PM
- */
 
 #ifndef TABLA_H
 #define TABLA_H
@@ -17,6 +6,8 @@
 #include <stdlib.h>
 #include <string> 
 #include "LIstaColumnas.h"
+#include "TablaHash.h"
+#include "Hash.h"
 
 using namespace std;
 
@@ -27,6 +18,8 @@ public:
     string GetNombre();
     virtual ~Tabla();
     LIstaColumnas *listaC;
+    TablaHash *tablaHash = new TablaHash();
+    Hash *funcionHash = new Hash();
 private:
     string nombre;
     

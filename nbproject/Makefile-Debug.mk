@@ -37,12 +37,15 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Arbol.o \
 	${OBJECTDIR}/Columna.o \
+	${OBJECTDIR}/Grafica.o \
 	${OBJECTDIR}/Hash.o \
 	${OBJECTDIR}/LIstaColumnas.o \
 	${OBJECTDIR}/ListaTabla.o \
 	${OBJECTDIR}/Nodo.o \
+	${OBJECTDIR}/NodoHash.o \
 	${OBJECTDIR}/Tabla.o \
 	${OBJECTDIR}/TablaHash.o \
+	${OBJECTDIR}/Tupla.o \
 	${OBJECTDIR}/main.o
 
 
@@ -80,6 +83,11 @@ ${OBJECTDIR}/Columna.o: Columna.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Columna.o Columna.cpp
 
+${OBJECTDIR}/Grafica.o: Grafica.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Grafica.o Grafica.cpp
+
 ${OBJECTDIR}/Hash.o: Hash.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -100,6 +108,11 @@ ${OBJECTDIR}/Nodo.o: Nodo.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Nodo.o Nodo.cpp
 
+${OBJECTDIR}/NodoHash.o: NodoHash.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/NodoHash.o NodoHash.cpp
+
 ${OBJECTDIR}/Tabla.o: Tabla.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -109,6 +122,11 @@ ${OBJECTDIR}/TablaHash.o: TablaHash.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TablaHash.o TablaHash.cpp
+
+${OBJECTDIR}/Tupla.o: Tupla.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Tupla.o Tupla.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

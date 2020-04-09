@@ -26,9 +26,17 @@ public:
     Arbol(const Arbol& orig);
     void insertar(string,int,string);
     void recorrerInsertar(Nodo* nodo,Nodo* padre);
+    void balancear(Nodo *padre);
+    void rotacionSimpleDerecha(Nodo *actual);
+    void rotacionSimpleIzquierda(Nodo *actual);
+    void rotacionDobleDerecha(Nodo *actual);
+    void rotacionDobleIzquierda(Nodo *actual);
+    void verificarAlturaDerecha(Nodo *padre);
+    void verificarAlturaIzquierda(Nodo *padre);
+    void recorrer(Nodo *padre);
     virtual ~Arbol();
     Nodo *raiz;
-    
+    Nodo *PadreAB, *sHijo, *predecesor, *abuelo, *hijoHijo;
 private:
 
 };

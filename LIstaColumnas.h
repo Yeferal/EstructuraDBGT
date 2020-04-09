@@ -45,6 +45,7 @@ public:
     void quitarBloque(int numero);
     void borrarLista();
     void desplegarLista();
+    Columna& buscar(int);
     LIstaColumnas getListaTamanio(int numero);
     bool isTamanio(int numero);
     Columna &getPrimero();

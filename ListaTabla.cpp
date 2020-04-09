@@ -194,7 +194,7 @@ ListaTabla::~ListaTabla() {
     if(!isListaVacia()){
         while (!isListaVacia()) {
         if (isListaVacia()) {
-        throw "La lista esta vacia";
+            throw "La lista esta vacia";
         }else if(primero==ultimo){
             primero = NULL;
             ultimo = NULL;

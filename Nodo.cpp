@@ -11,6 +11,7 @@ Nodo::Nodo(string text, int peso, string col) {
     columna = col;
     izquierda = NULL;
     derecha = NULL;
+    isRaiz = 0;
 }
 
 Nodo::Nodo(const Nodo& orig) {

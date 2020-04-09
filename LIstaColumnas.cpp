@@ -114,9 +114,10 @@ void LIstaColumnas::borrarLista(){
 bool LIstaColumnas::isTamanio(int numero){
     cout<<tamanio<<"<="<<numero<<endl;
     if(numero<=tamanio){
-        
+        cout<<"Verdadero"<<endl;
         return true;
     }
+    cout<<"Falso"<<endl;
     return false;
 }
 
@@ -196,6 +197,24 @@ void LIstaColumnas::getSiguiente(int numero){
         actual = actual->siguiente;
     }
 }
+
+Columna& LIstaColumnas::buscar(int numero) {
+    NodoLista* actual;
+    actual = primero;
+    
+    while (actual!=NULL) {
+        if(actual->posicion==numero){
+            cout<<"si lo encontro"<<endl;
+            return actual->columna;
+        }
+        actual = actual->siguiente;
+    }
+    cout<<"No lo encontro"<<endl;
+    //return NULL;
+}
+
+
+
 
 LIstaColumnas::~LIstaColumnas() {
     
