@@ -45,6 +45,25 @@ void Arbol::insertar(string texto, int peso, string columna){
     
 }
 
+void Arbol::insertarNodo(Nodo* nodo) {
+    Nodo *nuevoNodo = nodo;
+    if(raiz==NULL){
+        nuevoNodo->alturaIzquierda=0;
+        nuevoNodo->alturaIzquierda=0;
+        nuevoNodo->isRaiz = 1;
+        raiz = nuevoNodo;
+        cout<<"Se inserto la raiz "<<raiz->texto<<endl;
+    }else{
+        recorrerInsertar(nuevoNodo,raiz);
+        //recorrer(raiz);
+        balancear(raiz);
+        //recorrer(raiz);
+        //cout<<"balanceo"<<endl;
+        //recorrer(raiz);
+    }
+}
+
+
 void Arbol::recorrerInsertar(Nodo* nodo, Nodo* padre){
     Nodo *temp=nodo;
     if(nodo->peso<padre->peso){
@@ -88,13 +107,13 @@ void Arbol::recorrerInsertar(Nodo* nodo, Nodo* padre){
 
 void Arbol::verificarAlturaIzquierda(Nodo *padre){
     if(padre!=NULL){
-        cout<<"CALCULA ALTURA"<<endl;
+        //cout<<"CALCULA ALTURA"<<endl;
         if(padre->izquierda->alturaIzquierda>padre->izquierda->alturaDerecha){
             padre->alturaIzquierda = padre->izquierda->alturaIzquierda+1;
         }else{
             padre->alturaIzquierda = padre->izquierda->alturaDerecha+1;
         }
-        cout<<"TERMINA ALTURA"<<endl;
+        //cout<<"TERMINA ALTURA"<<endl;
     }
     
     
@@ -103,13 +122,13 @@ void Arbol::verificarAlturaIzquierda(Nodo *padre){
 
 void Arbol::verificarAlturaDerecha(Nodo *padre){
     if(padre!=NULL){
-        cout<<"CALCULA ALTURA"<<endl;
+        //cout<<"CALCULA ALTURA"<<endl;
         if(padre->derecha->alturaIzquierda>padre->derecha->alturaDerecha){
             padre->alturaDerecha = padre->derecha->alturaIzquierda+1;
         }else{
             padre->alturaDerecha = padre->derecha->alturaDerecha+1;
         }
-        cout<<"TERMINA ALTURA"<<endl;
+        //cout<<"TERMINA ALTURA"<<endl;
     }
     
     
@@ -118,7 +137,7 @@ void Arbol::verificarAlturaDerecha(Nodo *padre){
 void Arbol::rotacionSimpleDerecha(Nodo* actual){
     
     if(PadreAB==raiz){
-        cout<<" es UNA raiz"<<endl;
+        //cout<<" es UNA raiz"<<endl;
 		raiz=sHijo;
 		
 		hijoHijo=sHijo->izquierda;
@@ -139,7 +158,7 @@ void Arbol::rotacionSimpleDerecha(Nodo* actual){
 		
 		
 	}else{
-        cout<<"roto y no es raiz"<<endl;
+        //cout<<"roto y no es raiz"<<endl;
 		abuelo=PadreAB->padre;
                 
                 if(abuelo->derecha==PadreAB){
@@ -166,15 +185,15 @@ void Arbol::rotacionSimpleIzquierda(Nodo* actual){
     
     
     if (PadreAB==raiz){
-        cout<<" es UNA raiz"<<endl;
+        //cout<<" es UNA raiz"<<endl;
 		raiz=sHijo;
 		
 		//sHijo->dere=hijoHijo;
 		//hijoHijo->padre=sHijo;
 		//hijoHijo->dere=NULL;
-                cout<<"Hijo: "<<sHijo->texto<<endl;
-                cout<<"HijoHijo: "<<hijoHijo->texto<<endl;
-                cout<<"Padre: "<<PadreAB->texto<<endl;
+                //cout<<"Hijo: "<<sHijo->texto<<endl;
+                //cout<<"HijoHijo: "<<hijoHijo->texto<<endl;
+                //cout<<"Padre: "<<PadreAB->texto<<endl;
 		
 		sHijo->izquierda=PadreAB;
 		PadreAB->padre=sHijo;
@@ -183,7 +202,7 @@ void Arbol::rotacionSimpleIzquierda(Nodo* actual){
 		sHijo->padre=NULL;
 		
 	}else{
-        cout<<"roto y no es raiz"<<endl;
+        //cout<<"roto y no es raiz"<<endl;
 		abuelo=PadreAB->padre;
                 
                 if(abuelo->izquierda==PadreAB){
@@ -210,7 +229,7 @@ void Arbol::rotacionSimpleIzquierda(Nodo* actual){
 void Arbol::rotacionDobleDerecha(Nodo* actual){
     
     if (PadreAB==raiz){
-		cout<<" es UNA raiz"<<endl;
+		//cout<<" es UNA raiz"<<endl;
 //		hijoHijo=sHijo->izquierda; //Ubico al hijo del hijo...
 //		
 //		raiz=hijoHijo; //Cambiar el apuntador de la raíz.
@@ -240,7 +259,7 @@ void Arbol::rotacionDobleDerecha(Nodo* actual){
                 
                 
                 
-                cout<<" es UNA raiz"<<endl;
+                //cout<<" es UNA raiz"<<endl;
 		hijoHijo=sHijo->izquierda; //Ubico al hijo del hijo...
 		//abuelo = raiz;
 		raiz=hijoHijo; //Cambiar el apuntador de la raíz.
@@ -252,9 +271,9 @@ void Arbol::rotacionDobleDerecha(Nodo* actual){
 		
 		//PadreAB->derecha=hijoHijo->izquierda; //Apuntar a Null la parte izquierda del hijo, ya que ahora no tendrá hijos...			
                 sHijo->izquierda=NULL; 
-                cout<<"Hijo: "<<sHijo->texto<<endl;
-                cout<<"HijoHijo: "<<hijoHijo->texto<<endl;
-                cout<<"Padre: "<<PadreAB->texto<<endl;
+                //cout<<"Hijo: "<<sHijo->texto<<endl;
+                //cout<<"HijoHijo: "<<hijoHijo->texto<<endl;
+                //cout<<"Padre: "<<PadreAB->texto<<endl;
                 
 		PadreAB->derecha=hijoHijo->izquierda; //El antiguo padre debe apuntar ahora a null 
 		
@@ -269,7 +288,7 @@ void Arbol::rotacionDobleDerecha(Nodo* actual){
                 
                 
 	}else{
-		cout<<"roto y no es raiz"<<endl;
+		//cout<<"roto y no es raiz"<<endl;
 		abuelo=PadreAB->padre;
 		
 		hijoHijo=sHijo->izquierda; //Ubico al hijo del hijo...
@@ -372,7 +391,7 @@ void Arbol::rotacionDobleIzquierda(Nodo* actual){
 //		PadreAB->padre=hijoHijo; //Apuntar al nuevo padre ...
         
         
-                cout<<" es UNA raiz"<<endl;
+                //cout<<" es UNA raiz"<<endl;
 		hijoHijo=sHijo->derecha; //Ubico al hijo del hijo...
 		//abuelo = raiz;
 		raiz=hijoHijo; //Cambiar el apuntador de la raíz.
@@ -384,9 +403,9 @@ void Arbol::rotacionDobleIzquierda(Nodo* actual){
 		
 		//PadreAB->derecha=hijoHijo->izquierda; //Apuntar a Null la parte izquierda del hijo, ya que ahora no tendrá hijos...			
                 sHijo->derecha=NULL; 
-                cout<<"Hijo: "<<sHijo->texto<<endl;
-                cout<<"HijoHijo: "<<hijoHijo->texto<<endl;
-                cout<<"Padre: "<<PadreAB->texto<<endl;
+                //cout<<"Hijo: "<<sHijo->texto<<endl;
+                //cout<<"HijoHijo: "<<hijoHijo->texto<<endl;
+                //cout<<"Padre: "<<PadreAB->texto<<endl;
                 
 		PadreAB->izquierda=hijoHijo->derecha; //El antiguo padre debe apuntar ahora a null 
 		
@@ -397,9 +416,9 @@ void Arbol::rotacionDobleIzquierda(Nodo* actual){
 			PadreAB->derecha=NULL; //El antiguo padre debe apuntar ahora a nu
 		}
 		PadreAB->padre=hijoHijo; //Apuntar al nuevo padre ...
-                cout<<"Termino de rotar DOBLE IZQUIERDA"<<endl;
+                //cout<<"Termino de rotar DOBLE IZQUIERDA"<<endl;
 	}else{
-        cout<<"roto y no es raiz"<<endl;
+        //cout<<"roto y no es raiz"<<endl;
 		abuelo=PadreAB->padre;
                 cout<<abuelo->texto<<endl;
                 
@@ -442,21 +461,21 @@ void Arbol::balancear(Nodo* padre) {
                 
         //recorrer(padre);
         if((padre->FE==2) || (padre->FE==-2)){
-            cout<<"====================================================================="<<endl;
+            //cout<<"====================================================================="<<endl;
             
             PadreAB = padre;
             sHijo = padre->derecha;
-            cout<<" Padre: "<<padre->texto<<endl;
+            //cout<<" Padre: "<<padre->texto<<endl;
             if((PadreAB->FE>1) && (sHijo->FE>0)){
-                cout<<"Rotacion simple a la izquierda"<<endl;
-                cout<<" Padre: "<<padre->texto<<" Hijo: "<<padre->derecha->texto<<endl;
-                cout<<"PADRE  FE: "<<padre->FE<<"  HIjo  FE: "<<padre->derecha->FE<<endl;
+               // cout<<"Rotacion simple a la izquierda"<<endl;
+                //cout<<" Padre: "<<padre->texto<<" Hijo: "<<padre->derecha->texto<<endl;
+                //cout<<"PADRE  FE: "<<padre->FE<<"  HIjo  FE: "<<padre->derecha->FE<<endl;
                 rotacionSimpleIzquierda(padre);
                 recorrer(raiz);
                                 
             }else if((PadreAB->FE>1) && (sHijo->FE<0)){
-                cout<<"Rotacion doble a la derecha."<<endl;
-                cout<<" Padre: "<<padre->texto<<" Hijo: "<<padre->derecha->texto<<endl;
+                //cout<<"Rotacion doble a la derecha."<<endl;
+                //cout<<" Padre: "<<padre->texto<<" Hijo: "<<padre->derecha->texto<<endl;
                 rotacionDobleDerecha(padre);
                 recorrer(raiz);
                      
@@ -465,16 +484,16 @@ void Arbol::balancear(Nodo* padre) {
                 PadreAB = padre;
                 sHijo = padre->izquierda;
                 //cout<<"PADRE  FE: "<<padre->FE<<"  HIjo  FE: "<<padre->izquierda->FE<<endl;
-                cout<<" Padre: "<<padre->texto<<endl;
+                //cout<<" Padre: "<<padre->texto<<endl;
                 if((PadreAB->FE<-1) && (sHijo->FE<0)){
-                    cout<<"Rotacion simple a la derecha"<<endl;
-                    cout<<" Padre: "<<padre->texto<<" Hijo: "<<padre->izquierda->texto<<endl;
+                    //cout<<"Rotacion simple a la derecha"<<endl;
+                    //cout<<" Padre: "<<padre->texto<<" Hijo: "<<padre->izquierda->texto<<endl;
                     rotacionSimpleDerecha(padre);
                     recorrer(raiz);
                 
                 }else if((PadreAB->FE<-1) && (sHijo->FE>0)){
-                    cout<<"Rotacion doble a la izquierda "<<endl;
-                    cout<<" Padre: "<<padre->texto<<" Hijo: "<<padre->izquierda->texto<<endl;
+                    //cout<<"Rotacion doble a la izquierda "<<endl;
+                    //cout<<" Padre: "<<padre->texto<<" Hijo: "<<padre->izquierda->texto<<endl;
                     rotacionDobleIzquierda(padre);
                         //p->padre->derecha = padre;
                     recorrer(raiz);
@@ -491,38 +510,38 @@ void Arbol::balancear(Nodo* padre) {
 void Arbol::recorrer(Nodo* padre){
     //
     if(padre!=NULL){
-        cout<<"El nodo padre "<<padre->texto<<endl;
+        //cout<<"El nodo padre "<<padre->texto<<endl;
         if(padre->izquierda==NULL){
             //padre->alturaDerecha = 0;
-            cout<<"El nodo 0000000 iiiiiii: "<<padre->texto<<endl;
+            //cout<<"El nodo 0000000 iiiiiii: "<<padre->texto<<endl;
             padre->alturaIzquierda = 0;
         }else{
-            cout<<"Entri en: ZIIIZIZIIZIZ"<<endl;
+            //cout<<"Entri en: ZIIIZIZIIZIZ"<<endl;
             recorrer(padre->izquierda);
             verificarAlturaIzquierda(padre);
         }
-        cout<<"El nodo RAIZ ddddd"<<endl;
+        //cout<<"El nodo RAIZ ddddd"<<endl;
         if(padre->derecha==NULL){
-            cout<<"El nodo 0000000 dddddddd"<<endl;
+            //cout<<"El nodo 0000000 dddddddd"<<endl;
             padre->alturaDerecha = 0;
             //padre->alturaIzquierda = 0;
         }else{
-            cout<<"Entri en: DDDDDDDDDDDDD: "<<padre->texto<<endl;
+            //cout<<"Entri en: DDDDDDDDDDDDD: "<<padre->texto<<endl;
             recorrer(padre->derecha);
-            cout<<"salio en: DDDDDDDDDDDDD: "<<padre->texto<<endl;
+            //cout<<"salio en: DDDDDDDDDDDDD: "<<padre->texto<<endl;
             verificarAlturaDerecha(padre);
         }
         //cout<<"El nodo"<<padre->peso<<"---- tiene una altura: izq: "<<padre->alturaIzquierda<<"  der: "<<padre->alturaDerecha<<endl;
         if(padre!=NULL){
-            cout<<"El nodo fefefefefefe "<<endl;
+            //cout<<"El nodo fefefefefefe "<<endl;
             padre->FE = padre->alturaDerecha-padre->alturaIzquierda;
         }else{
-            cout<<"El nodo"<<endl;
+            //cout<<"El nodo"<<endl;
         }
     }else{
-        cout<<"El nodo  NULL"<<endl;
+        //cout<<"El nodo  NULL"<<endl;
     }
-    cout<<"TERMIKNA El nodo"<<endl;
+    //cout<<"TERMIKNA El nodo"<<endl;
     //cout<<"El nodo"<<padre->peso<<"---- tiene una altura: izq: "<<padre->alturaIzquierda<<"  der: "<<padre->alturaDerecha<<"    pOR LO TANTO FE: "<<padre->FE<<endl;
 }
 

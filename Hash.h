@@ -10,7 +10,8 @@ using namespace std;
 class Hash {
 public:
     Hash();
-    void funcionHash(string &texto);
+    int funcionHash(string &texto);
+    int encontrarPeso(string);
     virtual ~Hash();
 private:
     

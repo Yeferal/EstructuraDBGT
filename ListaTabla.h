@@ -40,6 +40,8 @@ public:
     void getSiguiente(int numero);
     void getAnterior(int numero);
     Tabla &getUltimo();
+    Tabla &getTabla(int numero);
+    Tabla &getTablaN(string nombre);
     bool isListaVacia();
     virtual ~ListaTabla();
 private:

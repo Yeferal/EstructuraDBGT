@@ -17,12 +17,15 @@
 #include "Columna.h"
 #include "Arbol.h"
 #include "Grafica.h"
+#include "Tupla.h"
+#include "Pintar.h"
 
 using namespace std;
 ListaTabla* listaTablas = new ListaTabla();
 string code;
 Grafica *g = new Grafica();
-
+Hash *h = new Hash();
+Pintar *pin = new Pintar();
 
 void createTable(string consulta [], int logitu){
     int longitu = logitu;
@@ -34,7 +37,7 @@ void createTable(string consulta [], int logitu){
     do{
         string campo = consulta[bandera];
         string tipoDato = consulta[bandera+1];
-        cout<<campo<<"--------"<<tipoDato<<endl;
+        
         int tipo=0;
         if(tipoDato=="String"){
             tipo = 3;
@@ -65,16 +68,105 @@ void createTable(string consulta [], int logitu){
     Tabla &tabla = ta;
     listaTablas->insertar(tabla);
     listaTablas->desplegarLista();
-    cout<<"Se a creado la Tabla: "<<tabla.GetNombre()<<endl;
-    g->graficarTabla(ta);
+    
+    //g->graficarTabla(ta);
 }
 
-void selectTabla(string *consulta){
+void selectTabla(string consulta [], int logitu){
+    int longitu = logitu;
+    int bandera = 1;
+    int bandera2 = 0;
+    int pesoT=0;
+    string nombreTabla;
+    Tabla t;
+    
+    bool salir = true;
+    if(consulta[bandera]=="*"){
+        
+        bandera = 3;
+        
+        nombreTabla = consulta[bandera];
+
+        cout<<nombreTabla<<endl;
+        t = listaTablas->getTablaN(nombreTabla);
+    }else{
+        do{
+//            string nombreCol = consulta[bandera];
+//            string dato = consulta[bandera2];
+//
+//            pesoT = h->encontrarPeso(dato);
+//
+//            tupla->modificar(dato,pesoT,nombreCol);
+//            int p = h->funcionHash(dato);
+//            ta.tablaHash->insertarNodoArbol(tupla->getNodoTupla(nombreCol),p);
+
+            if(consulta[bandera+1]=="FROM"){
+                salir = false;
+                //bandera=longitu;
+            }else{
+                bandera++;
+                //bandera2++;
+            }
+        }while(salir);
+
+    }
+    
+    
+    if(longitu==4){
+        cout<<"bien"<<endl;
+        pin->pintarTodaTabla(t);
+    }else{
+        cout<<"mall"<<endl;
+    }
+    
+    
     
 }
 
-void insertTable(string *consulta){
+
+
+void insertTable(string consulta [], int logitu){
+    int longitu = logitu;
+    int bandera = 2;
+    int bandera2 = 0;
+    int pesoT=0;
+    string nombreTabla = consulta[bandera];
+    Tabla ta = listaTablas->getTablaN(nombreTabla);
+    //ta.listaC->desplegarLista();
+    LIstaColumnas &listaC = *ta.listaC;
+    Tupla *tupla = new Tupla();
+    int pos = 1;
+    while (listaC.isTamanio(pos)) {
+        Columna &c = listaC.buscar(pos);
+        tupla->insertar(" ",0,c.GetTitulo());
+        pos++;
+    }
+
+    bandera = 4;
+    if((longitu-9)<=0){
+        bandera2 = 9-1;
+    }else{
+        bandera2 = longitu-(2+((longitu-9)/2));
+    }
     
+    do{
+        string nombreCol = consulta[bandera];
+        string dato = consulta[bandera2];
+        
+        pesoT = h->encontrarPeso(dato);
+        
+        tupla->modificar(dato,pesoT,nombreCol);
+        int p = h->funcionHash(dato);
+        ta.tablaHash->insertarNodoArbol(tupla->getNodoTupla(nombreCol),p);
+        
+        if(consulta[bandera+1]==")"){
+            bandera=longitu;
+        }else{
+            bandera++;
+            bandera2++;
+        }
+        
+    }while(bandera!=logitu);
 }
 
 void generarSplit(char* consulta, int cantidad){
@@ -82,18 +174,15 @@ void generarSplit(char* consulta, int cantidad){
     int tamanio =0;
     
     char *tex = NULL;
-    cout<<consulta<<endl;
+    
     tex = new char[cantidad];
-    cout<<"tamanio segun consulta: "<<sizeof(consulta)/sizeof(consulta[0])<<endl;
+    
     strcpy(tex,consulta);
-    cout<<tex<<endl;
+    
     int logituf = cantidad;
-    for (int i = 0; i < cantidad; i++) {
-        cout<<consulta[i]<<endl;
-    }
 
     char tex3 [logituf];
-    cout<<"Longitud es: "<<logituf<<endl;
+    
     strcpy(tex3,tex);
     char * pibote = strtok(tex," ,\n");
     
@@ -107,16 +196,14 @@ void generarSplit(char* consulta, int cantidad){
     tamanio=0;
     pibote = strtok(tex3," ,\n");
     while (pibote!=NULL) {
-        cout<<pibote<<endl;
+        
         tok[tamanio] = pibote;
         tamanio++;
         pibote = strtok(NULL," ,\n");
         
     }
-    cout<<"tamanio: "<<tamanio<<endl;
-    for (int i = 0; i < tamanio; i++) {
-        cout<<tok[i]<<"-----------"<<(i+1)<<endl;
-    }
+    
+    
 
     
     string primeraPalabra = tok[0];
@@ -125,13 +212,13 @@ void generarSplit(char* consulta, int cantidad){
         createTable(tok,tamanio);
             cout<<"crear"<<endl;
     }else if(primeraPalabra=="SELECT"){
-        //selectTabla(texto);
+        selectTabla(tok,tamanio);
             cout<<"seleccionar"<<endl;
     }else if(primeraPalabra=="INSERT"){
-        //insertTable(texto);
+        insertTable(tok,tamanio);
             cout<<"insertar"<<endl;
     }else{
-        //insertTable(texto);
+        
             cout<<"NO es una consulta"<<endl;
     }
 }
@@ -172,6 +259,99 @@ void generarGrafico(Nodo * raiz){
 //    code +=raiz->texto+altura+";\n";
 }
 
+void menuReportes(){
+    bool salir = true;
+    string consulta;
+    int opcion;
+    
+    while (salir) {
+        cout<<"\n\n\n"<<endl;
+        cout<<"|====================  Reportes GuatemayaDB  =====================|"<<endl;
+        cout<<"| 1.- Cantidad de Datos de toda la DB                             |"<<endl;
+        cout<<"|-----------------------------------------------------------------|"<<endl;
+        cout<<"| 2.- Cantidad de Datos por Tabla                                 |"<<endl;
+        cout<<"|-----------------------------------------------------------------|"<<endl;
+        cout<<"| 3.- Cantidad de Filas de un mismo tipo de dato de una Tabla     |"<<endl;
+        cout<<"|-----------------------------------------------------------------|"<<endl;
+        cout<<"| 4.- Cantidad de Todas las columnas de todas las tablas de una DB|"<<endl;
+        cout<<"|-----------------------------------------------------------------|"<<endl;
+        cout<<"| 5.- Log DB                                                      |"<<endl;
+        cout<<"|-----------------------------------------------------------------|"<<endl;
+        cout<<"| 6.- Regresar al Menu Principal                                  |"<<endl;
+        cout<<"|=================================================================|"<<endl;
+        cin>>opcion;
+        switch(opcion){
+            case 1:
+                
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                
+                break;
+            case 5:
+                
+                break;
+            case 6:
+                salir = false;
+                cout<<"\n\n\n"<<endl;
+                break;
+            default:
+                cout<<"\n\n\n\nOPCION NO VALIDA"<<endl;
+                opcion=1;
+        }
+    }
+
+}
+
+void menuGraficas(){
+    bool salir = true;
+    string consulta;
+    int opcion;
+    
+    while (salir) {
+        cout<<"\n\n\n"<<endl;
+        cout<<"|====================  Graficas GuatemayaDB  =====================|"<<endl;
+        cout<<"| 1.- Cantidad de Datos de toda la DB                             |"<<endl;
+        cout<<"|-----------------------------------------------------------------|"<<endl;
+        cout<<"| 2.- Cantidad de Datos por Tabla                                 |"<<endl;
+        cout<<"|-----------------------------------------------------------------|"<<endl;
+        cout<<"| 3.- Cantidad de Filas de un mismo tipo de dato de una Tabla     |"<<endl;
+        cout<<"|=================================================================|"<<endl;
+        cin>>opcion;
+        switch(opcion){
+            case 1:
+                
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                
+                break;
+            case 5:
+                
+                break;
+            case 6:
+                salir = false;
+                cout<<"\n\n\n"<<endl;
+                break;
+            default:
+                cout<<"\n\n\n\nOPCION NO VALIDA"<<endl;
+                opcion=1;
+        }
+    }
+
+}
+
+
 
 int main(int argc, char** argv) {
     
@@ -182,11 +362,18 @@ int main(int argc, char** argv) {
     int cantidad = 0;
     char *con = NULL;
     
+    
+    
     while (salir) {
-        cout<<"=====================  Opciones GuatemayaDB  ====================="<<endl;
-        cout<<"1.- Consultas"<<endl;
-        cout<<"2.- Graficas"<<endl;
-        cout<<"3.- Salir"<<endl;
+        cout<<"|====================  Opciones GuatemayaDB  =====================|"<<endl;
+        cout<<"| 1.- Consultas                                                   |"<<endl;
+        cout<<"|-----------------------------------------------------------------|"<<endl;
+        cout<<"| 2.- Graficas                                                    |"<<endl;
+        cout<<"|-----------------------------------------------------------------|"<<endl;
+        cout<<"| 3.- Reportes                                                    |"<<endl;
+        cout<<"|-----------------------------------------------------------------|"<<endl;
+        cout<<"| 4.- Salir                                                       |"<<endl;
+        cout<<"|=================================================================|"<<endl;
         cin>>opcion;
         switch(opcion){
             case 1:
@@ -199,13 +386,16 @@ int main(int argc, char** argv) {
                 con = new char[cantidad];
                 strcpy(con,consulta.c_str());
                 
-                cout<<"tama: "<<cantidad<<endl;
+                
                 generarSplit(con, cantidad);
                 break;
             case 2:
                 cout<<"\n\n\n\nEscribe la Grafica"<<endl;
                 break;
             case 3:
+                menuReportes();
+                break;
+            case 4:
                 salir = false;
                 break;
             default:

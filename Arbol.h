@@ -25,6 +25,7 @@ public:
     Arbol();
     Arbol(const Arbol& orig);
     void insertar(string,int,string);
+    void insertarNodo(Nodo *nodo);
     void recorrerInsertar(Nodo* nodo,Nodo* padre);
     void balancear(Nodo *padre);
     void rotacionSimpleDerecha(Nodo *actual);

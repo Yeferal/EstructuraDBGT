@@ -19,7 +19,7 @@ public:
     virtual ~Tabla();
     LIstaColumnas *listaC;
     TablaHash *tablaHash = new TablaHash();
-    Hash *funcionHash = new Hash();
+    //Hash *funcionHash = new Hash();
 private:
     string nombre;
     

@@ -112,12 +112,12 @@ void LIstaColumnas::borrarLista(){
     
 }
 bool LIstaColumnas::isTamanio(int numero){
-    cout<<tamanio<<"<="<<numero<<endl;
+    
     if(numero<=tamanio){
-        cout<<"Verdadero"<<endl;
+        
         return true;
     }
-    cout<<"Falso"<<endl;
+    
     return false;
 }
 
@@ -127,14 +127,24 @@ void LIstaColumnas::desplegarLista(){
     actual = primero;
 
     if (!isListaVacia()) {
-        
+        for (int i = 0; i < tamanio; i++) {
+            cout<<"+======="<<ends;
+
+        }
+        cout<<"+"<<endl;
+
         while (actual!=NULL) {
             Columna &columna = actual->columna;
-            cout<<actual->posicion<<".-    Columna: "<<columna.GetTitulo()<<",  Tipo:"<<columna.GetTipoTexto()<<endl;
+            //cout<<actual->posicion<<".-    Columna: "<<columna.GetTitulo()<<",  Tipo:"<<columna.GetTipoTexto()<<endl;
+            cout<<"|"<<columna.GetTitulo()<<"\t"<<ends;
             actual = actual->siguiente;
         }
-        cout<<""<<endl;
-        cout<<""<<endl;
+        cout<<"|"<<endl;
+        for (int i = 0; i < tamanio; i++) {
+            cout<<"+======="<<ends;
+
+        }
+        cout<<"+"<<endl;
     }else{
         cout<<"Esta vacia"<<endl;
     }
@@ -204,12 +214,12 @@ Columna& LIstaColumnas::buscar(int numero) {
     
     while (actual!=NULL) {
         if(actual->posicion==numero){
-            cout<<"si lo encontro"<<endl;
+            
             return actual->columna;
         }
         actual = actual->siguiente;
     }
-    cout<<"No lo encontro"<<endl;
+    
     //return NULL;
 }
 

@@ -3,4 +3,5 @@ tabla1->col1;
 col1[ shape=square];tabla1->col2;
 col2[ shape=square];tabla1->col3;
 col3[ shape=square];tabla1->col4;
-col4[ shape=square];tabla1[ shape=square];}
+col4[ shape=square];rankdir=LR;
+tabla1[ shape=square];}

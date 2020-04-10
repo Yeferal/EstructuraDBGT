@@ -116,6 +116,29 @@ void TablaHash::desplegarLista() {
     }
 }
 
+void TablaHash::insertarNodoArbol(Nodo* nodo, int posicion) {
+    NodoLista* actual;
+    actual = primero;
+
+    if (!isListaVacia()) {
+        
+        while (actual!=NULL) {
+            
+            if(actual->posicion==posicion){
+                
+                actual->arbol.insertarNodo(nodo);
+                break;
+            }
+            actual = actual->siguiente; 
+            
+            
+        }
+        
+    }
+}
+
+
+
 bool TablaHash::isListaVacia(){
     
     return primero == NULL;

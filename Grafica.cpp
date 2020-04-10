@@ -44,13 +44,35 @@ void Grafica::graficarTabla(Tabla& ta) {
         //}
            pos++;
     }
-
+    code += "rankdir=LR;\n";
     code += ta.GetNombre()+"[ shape=square];";
     code += "}";
     abrirImagen("tabla");
 }
 
 void Grafica::graficarTablas(ListaTabla& lista) {
+    code = "digraph G {\n";
+    //code += ta.GetNombre()+"--->";
+    int pos =1;
+    int posL =1;
+    
+    while(lista.isTamanio(posL)){
+        Tabla &t = lista.getTabla(posL);
+        while (t.listaC->isTamanio(pos)) {
+        cout<<"entroooo"<<endl;
+        Columna &c = t.listaC->buscar(pos);
+           code += t.GetNombre()+"->"+c.GetTitulo()+";\n"; 
+           code += c.GetTitulo()+"[ shape=square];";
+           pos++;
+        }
+        pos =1;
+        posL++;
+        code += t.GetNombre()+"[ shape=square];\n";
+    }
+    code += "rankdir=LR;\n";
+    
+    code += "}";
+    abrirImagen("tablas");
     
 }
 

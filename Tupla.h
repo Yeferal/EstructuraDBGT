@@ -12,6 +12,8 @@ public:
     void insertar(string,int,string);
     void desplegarLista();
     Nodo& getTupla();
+    Nodo* getNodoTupla(string);
+    void modificar(string,int,string);
     bool isListaVacia();
     virtual ~Tupla();
     Nodo *primero;

@@ -41,8 +41,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/Hash.o \
 	${OBJECTDIR}/LIstaColumnas.o \
 	${OBJECTDIR}/ListaTabla.o \
+	${OBJECTDIR}/ListaTupla.o \
 	${OBJECTDIR}/Nodo.o \
 	${OBJECTDIR}/NodoHash.o \
+	${OBJECTDIR}/Pintar.o \
 	${OBJECTDIR}/Tabla.o \
 	${OBJECTDIR}/TablaHash.o \
 	${OBJECTDIR}/Tupla.o \
@@ -103,6 +105,11 @@ ${OBJECTDIR}/ListaTabla.o: ListaTabla.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaTabla.o ListaTabla.cpp
 
+${OBJECTDIR}/ListaTupla.o: ListaTupla.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaTupla.o ListaTupla.cpp
+
 ${OBJECTDIR}/Nodo.o: Nodo.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -112,6 +119,11 @@ ${OBJECTDIR}/NodoHash.o: NodoHash.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/NodoHash.o NodoHash.cpp
+
+${OBJECTDIR}/Pintar.o: Pintar.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Pintar.o Pintar.cpp
 
 ${OBJECTDIR}/Tabla.o: Tabla.cpp
 	${MKDIR} -p ${OBJECTDIR}

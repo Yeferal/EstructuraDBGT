@@ -146,6 +146,34 @@ Tabla& ListaTabla::getUltimo(){
     return ultimo->tabla;
 }
 
+Tabla& ListaTabla::getTabla(int numero) {
+    NodoLista* actual;
+    actual = primero;
+    
+    while (actual!=NULL) {
+        if(actual->posicion==numero){
+            return actual->tabla;
+            
+        }
+        actual = actual->siguiente;
+    }
+}
+
+Tabla& ListaTabla::getTablaN(string nombre) {
+    NodoLista* actual;
+    actual = primero;
+    
+    while (actual!=NULL) {
+        if(actual->tabla.GetNombre()==nombre){
+            cout<<"EXISTE LA TABLA"<<endl;
+            return actual->tabla;
+        }
+        actual = actual->siguiente;
+    }
+}
+
+
+
 bool ListaTabla::isListaVacia(){
     
     return primero == NULL;

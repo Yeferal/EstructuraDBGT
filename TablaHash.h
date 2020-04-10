@@ -4,7 +4,7 @@
 #define TABLAHASH_H
 
 #include "Arbol.h"
-
+#include "Nodo.h"
 
 class TablaHash {
 public:
@@ -29,6 +29,7 @@ public:
     void insertar(Arbol &arbol);
     Arbol& buscar(int);
     void actualizarArbol(Arbol &nuevoArbol,int);
+    void insertarNodoArbol(Nodo *nodo,int posicion);
     void desplegarLista();
     bool isListaVacia();
     virtual ~TablaHash();

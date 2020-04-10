@@ -17,6 +17,7 @@ Tupla::Tupla() {
 }
 
 Tupla::Tupla(const Tupla& orig) {
+    primero = NULL;
 }
 
 void Tupla::insertar(string texto, int peso, string columna) {
@@ -45,11 +46,10 @@ void Tupla::desplegarLista() {
     if (!isListaVacia()) {
         
         while (actual!=NULL) {
-            
-            cout<<actual->peso<<".-    texto: "<<actual->texto<<",  Tipo:"<<actual->columna<<endl;
-            actual = actual->registroDerecha;
+            cout<<"|"<<actual->texto<<"\t|"<<ends;
+//            cout<<actual->peso<<".-    texto: "<<actual->texto<<",  Tipo:"<<actual->columna<<endl;
+//            actual = actual->registroDerecha;
         }
-        cout<<""<<endl;
         cout<<""<<endl;
     }else{
         cout<<"Esta vacia"<<endl;
@@ -60,6 +60,43 @@ Nodo& Tupla::getTupla() {
     
     return *primero;
 }
+
+Nodo* Tupla::getNodoTupla(string columna) {
+    Nodo* actual;
+    actual = primero;
+    if (!isListaVacia()) {
+        
+        while (actual!=NULL) {
+            
+            if(actual->columna==columna){
+                
+                return actual;
+            }
+            actual = actual->registroDerecha;
+        }
+    }
+}
+
+
+void Tupla::modificar(string texto, int peso, string columna) {
+    Nodo* actual;
+    actual = primero;
+
+    if (!isListaVacia()) {
+        
+        while (actual!=NULL) {
+            
+            if(actual->columna==columna){
+                actual->texto = texto;
+                actual->peso = peso;
+                break;
+            }
+            actual = actual->registroDerecha;
+        }
+        
+    }
+}
+
 
 bool Tupla::isListaVacia() {
     
