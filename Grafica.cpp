@@ -70,7 +70,7 @@ void Grafica::graficarTablas(ListaTabla& lista) {
         while (t.listaC->isTamanio(pos)) {
         
         Columna &c = t.listaC->buscar(pos);
-        code += "\""+t.GetNombre()+c.GetTitulo()+"\""+"[label=\""+c.GetTitulo()+"\"];\n";
+           code += "\""+t.GetNombre()+c.GetTitulo()+"\""+"[label=\""+c.GetTitulo()+"\"];\n";
            code += t.GetNombre()+"->"+t.GetNombre()+c.GetTitulo()+";\n"; 
            code += t.GetNombre()+c.GetTitulo()+"[ shape=square];\n";
            code += "node [shape=record];\n";

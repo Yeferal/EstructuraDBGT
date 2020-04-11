@@ -19,10 +19,12 @@
 #include "Grafica.h"
 #include "Tupla.h"
 #include "Pintar.h"
+#include "ArchivoLog.h"
 
 using namespace std;
 ListaTabla* listaTablas = new ListaTabla();
 string code;
+ArchivoLog *log = new ArchivoLog();
 Grafica *g = new Grafica();
 Hash *h = new Hash();
 Pintar *pin = new Pintar();
@@ -42,13 +44,13 @@ void createTable(string consulta [], int logitu){
 
             int tipo=0;
             if(tipoDato=="String"){
-                tipo = 3;
+                tipo = 4;
             }else if(tipoDato=="Int"){
                 tipo = 1;
             }else if(tipoDato=="Double"){
                 tipo = 2;
             }else if(tipoDato=="Char"){
-                tipo = 4;
+                tipo = 3;
             }
 
             Columna col = Columna(campo,tipo);
@@ -192,7 +194,9 @@ void insertTable(string consulta [], int logitu){
             int p = h->funcionHash(dato);
             if(listaC.buscarNombre(nombreCol).GetTipo()!=p){
                 cout<<"Error en el dato"<<dato<<" no es el tipo de dato que se esperaba"<<endl;
-                
+                string accion;
+                accion = "\nERROR DE DATO :=====> "+dato+" se esperaba un "+listaC.buscarNombre(nombreCol).GetTipoTexto();
+                log->escribir(accion);
             }
             ta.tablaHash->insertarNodoArbol(tupla->getNodoTupla(nombreCol),p);
 
@@ -241,20 +245,32 @@ void generarSplit(char* consulta, int cantidad){
 //    }
     
 
-    
+    string convertido = consulta;
+    string accion;
     string primeraPalabra = tok[0];
     cout<<"======"<<primeraPalabra<<"======"<<endl;
     if(primeraPalabra=="CREATE"){
+        
+        accion = "\nCONSULTA :=====> "+convertido;
+        log->escribir(accion);
         createTable(tok,tamanio);
             //cout<<"crear"<<endl;
     }else if(primeraPalabra=="SELECT"){
+        
+        accion = "\nCONSULTA :=====> "+convertido;
+        log->escribir(accion);
         selectTabla(tok,tamanio);
             //cout<<"seleccionar"<<endl;
     }else if(primeraPalabra=="INSERT"){
+        
+        accion = "\nCONSULTA :=====> "+convertido;
+        log->escribir(accion);
         insertTable(tok,tamanio);
             //cout<<"insertar"<<endl;
     }else{
         
+        accion = "ERROR en la consulta :=====> "+convertido;
+        log->escribir(accion);
             cout<<"NO es una consulta"<<endl;
     }
     //tok = (string)malloc(sizeof(string));
@@ -298,7 +314,12 @@ void menuReportes(){
                     cout<<"Seleccione la tabla que desea"<<endl;
                     listaTablas->desplegarLista();
                     cin>>op;
-                    listaTablas->getTotalDatosTabla(op);
+                    if(listaTablas->isTamanio(op)){
+                        listaTablas->getTotalDatosTabla(op);
+                    }else{
+                        cout<<"Opcion no valida"<<endl;
+                    }
+                    
                 }else{
                     cout<<"La DB esta vacia"<<endl;
                 }
@@ -317,7 +338,12 @@ void menuReportes(){
                     cout<<"4. Char"<<endl;
                     cin>>op2;
                     cout<<"\n"<<endl;
-                    listaTablas->getTotalFilasDB(op,op2);
+                    if(listaTablas->isTamanio(op) && op2>=1 && op2<=4){
+                        listaTablas->getTotalFilasDB(op,op2);
+                    }else{
+                        cout<<"Opcion no valida"<<endl;
+                    }
+                    
                 }else{
                     cout<<"La DB esta vacia"<<endl;
                 }
@@ -330,7 +356,9 @@ void menuReportes(){
                 }
                 break;
             case 5:
-                
+                cout<<"\n|===================================================================================================================================================================================================|\n"<<endl;
+                cout<<log->leer()<<endl;
+                cout<<"\n|===================================================================================================================================================================================================|\n\n"<<endl;
                 break;
             case 6:
                 salir = false;
@@ -376,8 +404,13 @@ void menuGraficas(){
                     cout<<"Seleccione la tabla que desea"<<endl;
                     listaTablas->desplegarLista();
                     cin>>op;
+                    if(listaTablas->isTamanio(op)){
+                        g->graficarTabla(listaTablas->getTabla(op));
+                    }else{
+                        cout<<"Opcion no valida"<<endl;
+                    }
                     //listaTablas->getTotalDatosTabla(op);
-                    g->graficarTabla(listaTablas->getTabla(op));
+                    
                 }else{
                     cout<<"La DB esta vacia"<<endl;
                 }
@@ -388,8 +421,13 @@ void menuGraficas(){
                     cout<<"Seleccione la tabla que desea"<<endl;
                     listaTablas->desplegarLista();
                     cin>>op;
+                    if(listaTablas->isTamanio(op)){
+                        g->graficarTablaDatos(listaTablas->getTabla(op));
+                    }else{
+                        cout<<"Opcion no valida"<<endl;
+                    }
                     //listaTablas->getTotalDatosTabla(op);
-                    g->graficarTablaDatos(listaTablas->getTabla(op));
+                    
                 }else{
                     cout<<"La DB esta vacia"<<endl;
                 }

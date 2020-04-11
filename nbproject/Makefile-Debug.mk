@@ -44,7 +44,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/ListaTabla.o \
 	${OBJECTDIR}/ListaTupla.o \
 	${OBJECTDIR}/Nodo.o \
-	${OBJECTDIR}/NodoHash.o \
 	${OBJECTDIR}/Pintar.o \
 	${OBJECTDIR}/Tabla.o \
 	${OBJECTDIR}/TablaHash.o \
@@ -120,11 +119,6 @@ ${OBJECTDIR}/Nodo.o: Nodo.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Nodo.o Nodo.cpp
-
-${OBJECTDIR}/NodoHash.o: NodoHash.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/NodoHash.o NodoHash.cpp
 
 ${OBJECTDIR}/Pintar.o: Pintar.cpp
 	${MKDIR} -p ${OBJECTDIR}

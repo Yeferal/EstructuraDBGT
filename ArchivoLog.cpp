@@ -13,24 +13,62 @@
 
 #include "ArchivoLog.h"
 
+
 ArchivoLog::ArchivoLog() {
     ofstream archivo;
     
-    archivo.open("Arch_LOG.dot",ios::out);
+    archivo.open("Arch_LOG.txt",ios::out);
         
     if(archivo.fail()){
         cout<<"NO se puede abrir"<<endl;
         exit(1);
-    }else{
-        cout<<"SI se puede abrir"<<endl;
     }
-    string code = "";
+    string code = "Inicia la base de datos de: GuatemayaDB.\n\n";
     archivo<<code;
     archivo.close();
 }
 
 ArchivoLog::ArchivoLog(const ArchivoLog& orig) {
 }
+
+string ArchivoLog::leer() {
+    string lectura = "";
+    string linea = "";
+    ifstream archivo;
+    archivo.open("Arch_LOG.txt",ios::in);
+    if(archivo.fail()){
+        cout<<"NO se puede abrir"<<endl;
+        exit(1);
+    }
+    while (!archivo.eof()) {
+        getline(archivo,linea);
+        lectura += linea+"\n";
+    }
+    archivo.close();
+    
+    return lectura;
+}
+
+void ArchivoLog::escribir(string accion) {
+    string texto = leer();
+    //tm *time = localeTime(&now);
+    //texto += "\n"+;
+    texto += "\n"+accion;
+    
+    ofstream archivo;
+    
+    archivo.open("Arch_LOG.txt",ios::out);
+        
+    if(archivo.fail()){
+        cout<<"NO se puede abrir"<<endl;
+        exit(1);
+    }
+    archivo<<texto;
+    archivo.close();
+    
+}
+
+
 
 ArchivoLog::~ArchivoLog() {
 }

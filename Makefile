@@ -56,7 +56,9 @@ build: .build-post
 .build-pre:
 # Add your pre 'build' code here...
 
-.build-post: .build-impl
+.build-post: .build-impl Arbol.o ArchivoLog.o Columna.o Grafica.o Hash.o LIstaColumnas.o ListaTabla.o ListaTupla.o Nodo.o Pintar.o Tabla.o TablaHash.o Tupla.o main.o
+	g++ Arbol.o ArchivoLog.o Columna.o Grafica.o Hash.o LIstaColumnas.o ListaTabla.o ListaTupla.o Nodo.o Pintar.o Tabla.o TablaHash.o Tupla.o main.o -o GuatemayaDB
+	#./GuatemayaDB
 # Add your post 'build' code here...
 
 
@@ -119,7 +121,47 @@ help: .help-post
 .help-post: .help-impl
 # Add your post 'help' code here...
 
+Arbol.o: Arbol.cpp Arbol.h
+	g++ -c Arbol.cpp
+	
+ArchivoLog.o: ArchivoLog.cpp ArchivoLog.h
+	g++ -c ArchivoLog.cpp
+	
+Columna.o: Columna.cpp Columna.h
+	g++ -c Columna.cpp
+	
+Grafica.o: Grafica.cpp Grafica.h
+	g++ -c Grafica.cpp
+	
+Hash.o: Hash.cpp Hash.h
+	g++ -c Hash.cpp
 
+ListaTupla.o: ListaTupla.cpp ListaTupla.h
+	g++ -c ListaTupla.cpp
+	
+ListaTabla.o: ListaTabla.cpp ListaTabla.h
+	g++ -c ListaTabla.cpp
+	
+LIstaColumnas.o: LIstaColumnas.cpp LIstaColumnas.h
+	g++ -c LIstaColumnas.cpp
+	
+Nodo.o: Nodo.cpp Nodo.h
+	g++ -c Nodo.cpp
+	
+Pintar.o: Pintar.cpp Pintar.h
+	g++ -c Pintar.cpp
+	
+Tabla.o: Tabla.cpp Tabla.h
+	g++ -c Tabla.cpp
+	
+TablaHash.o: TablaHash.cpp TablaHash.h
+	g++ -c TablaHash.cpp
+	
+Tupla.o: Tupla.cpp Tupla.h
+	g++ -c Tupla.cpp
+	
+main.o: 
+	g++ -c main.cpp
 
 # include project implementation makefile
 include nbproject/Makefile-impl.mk

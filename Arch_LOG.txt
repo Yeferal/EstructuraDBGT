@@ -1,0 +1,2 @@
+Inicia la base de datos de: GuatemayaDB.
+

@@ -83,8 +83,8 @@ void Tabla::recorrerArbol(Nodo* padre, string columna) {
 
 
 Tabla::~Tabla() {
-    listaC->~LIstaColumnas();
-    tablaHash->~TablaHash();
-    
+    //listaC->~LIstaColumnas();
+    //tablaHash->~TablaHash();
+    //
 }
 

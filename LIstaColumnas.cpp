@@ -117,7 +117,7 @@ bool LIstaColumnas::isTamanio(int numero){
         
         return true;
     }
-    
+    cout<<"Quito"<<"_______"<<endl;
     return false;
 }
 

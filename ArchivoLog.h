@@ -1,15 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/* 
- * File:   ArchivoLog.h
- * Author: yefer
- *
- * Created on 11 de abril de 2020, 03:33 PM
- */
 
 #ifndef ARCHIVOLOG_H
 #define ARCHIVOLOG_H
@@ -30,7 +19,10 @@ class ArchivoLog {
 public:
     ArchivoLog();
     ArchivoLog(const ArchivoLog& orig);
+    string leer();
+    void escribir(string);
     virtual ~ArchivoLog();
+    //time_t now = time(0);
 private:
 
 };

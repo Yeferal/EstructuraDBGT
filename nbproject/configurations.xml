@@ -13,7 +13,6 @@
       <itemPath>ListaTabla.h</itemPath>
       <itemPath>ListaTupla.h</itemPath>
       <itemPath>Nodo.h</itemPath>
-      <itemPath>NodoHash.h</itemPath>
       <itemPath>Pintar.h</itemPath>
       <itemPath>Tabla.h</itemPath>
       <itemPath>TablaHash.h</itemPath>
@@ -35,7 +34,6 @@
       <itemPath>ListaTabla.cpp</itemPath>
       <itemPath>ListaTupla.cpp</itemPath>
       <itemPath>Nodo.cpp</itemPath>
-      <itemPath>NodoHash.cpp</itemPath>
       <itemPath>Pintar.cpp</itemPath>
       <itemPath>Tabla.cpp</itemPath>
       <itemPath>TablaHash.cpp</itemPath>
@@ -99,10 +97,6 @@
       <item path="Nodo.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Nodo.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="NodoHash.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="NodoHash.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Pintar.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -178,10 +172,6 @@
       <item path="Nodo.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Nodo.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="NodoHash.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="NodoHash.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Pintar.cpp" ex="false" tool="1" flavor2="0">
       </item>
