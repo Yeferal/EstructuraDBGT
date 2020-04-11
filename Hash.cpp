@@ -22,7 +22,7 @@ int Hash::funcionHash(string &texto){
     
     codigo = texto.at(0);
 
-    if(codigo>=49 && codigo<=57){
+    if(codigo>=48 && codigo<=57){
         bolEntero = true;
         do{
             codigo = texto.at(tamanio);
@@ -38,7 +38,7 @@ int Hash::funcionHash(string &texto){
                     bolEntero = false;
                 }
             }else{
-                if(codigo<49 || codigo>57){
+                if(codigo<48 || codigo>57){
                   bolString = true;  
                   bolDecimal = false;
                   bolEntero = false;
@@ -49,7 +49,7 @@ int Hash::funcionHash(string &texto){
             tamanio++;
         }while(texto.size()!=tamanio);
         
-    }else if(codigo<49 || codigo>57 && texto.size()==1){
+    }else if((codigo<48 || codigo>57) && texto.size()==1){
         bolCaracater = true;
     }else{
         bolString = true;
@@ -83,7 +83,7 @@ int Hash::encontrarPeso(string texto) {
     
     codigo = texto.at(0);
 
-    if(codigo>=49 && codigo<=57){
+    if(codigo>=48 && codigo<=57){
         bolEntero = true;
         do{
             codigo = texto.at(tamanio);
@@ -99,7 +99,7 @@ int Hash::encontrarPeso(string texto) {
                     bolEntero = false;
                 }
             }else{
-                if(codigo<49 || codigo>57){
+                if(codigo<48 || codigo>57){
                   bolString = true;  
                   bolDecimal = false;
                   bolEntero = false;
@@ -110,7 +110,7 @@ int Hash::encontrarPeso(string texto) {
             tamanio++;
         }while(texto.size()!=tamanio);
         
-    }else if(codigo<49 || codigo>57 && texto.size()==1){
+    }else if(codigo<48 || codigo>57 && texto.size()==1){
         bolCaracater = true;
     }else{
         bolString = true;

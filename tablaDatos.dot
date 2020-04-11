@@ -1,0 +1,24 @@
+digraph G {
+DB ->tabla1;
+node [shape=record];
+node0 [label = "<f1> 0 | <f2> 1 | <f3> 2 | <f4> 3 |"] 
+tabla1->col1;
+col1[ shape=square];
+col1 -> node0:f1;
+tabla1->col2;
+col2[ shape=square];
+col2 -> node0:f2;
+tabla1->col3;
+col3[ shape=square];
+col3 -> node0:f3;
+tabla1->col4;
+col4[ shape=square];
+col4 -> node0:f4;
+node [shape = circle];node0: f1 -> 1;
+node0: f2 -> 2.3;
+node0: f3 -> a;
+node0: f4 -> hola;
+rankdir=LR;
+tabla1[ shape=square];
+DB[ shape=square];
+}

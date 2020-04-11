@@ -57,7 +57,7 @@ void ListaTabla::borrarLista(){
     
 }
 bool ListaTabla::isTamanio(int numero){
-    cout<<tamanio<<"<="<<numero<<endl;
+    //cout<<tamanio<<"<="<<numero<<endl;
     if(numero<=tamanio){
         
         return true;
@@ -210,6 +210,7 @@ ListaTabla::~ListaTabla() {
         }else{
 
             NodoLista* nodo = ultimo;
+            nodo->tabla.~Tabla();
             ultimo = ultimo->anterio;
             ultimo->siguiente = NULL;
             tamanio--;
@@ -217,6 +218,7 @@ ListaTabla::~ListaTabla() {
         }
         }
         NodoLista* nodo = primero;
+        nodo->tabla.~Tabla();
         primero=NULL;
         ultimo = NULL;
         delete nodo;

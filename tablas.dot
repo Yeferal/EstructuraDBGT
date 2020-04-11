@@ -24,5 +24,5 @@ tabla1col4[ shape=square];
 node [shape=record];
 nodetabla1col4[label = "<f1> 0 | <f2> 1 | <f3> 2 | <f4> 3 |"] 
 tabla1col4 -> nodetabla1col4:f4;
-rankdir=LR;
-tabla1[ shape=square];GuatemayaDB[ shape=square];}
+tabla1[ shape=square];
+}

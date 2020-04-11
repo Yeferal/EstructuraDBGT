@@ -5,7 +5,8 @@ CREATE TABLE tabla3 ( col1 Int, col2 Double,col3 String,col4 Char );
 
 INSERT INTO tabla1 ( col1,col2,col3,col4 ) VALUES ( 1,2.3,hola,a );
 INSERT INTO tabla1 ( col1,col2,col3,col4 ) VALUES ( 1,0.2,humano,b );
-INSERT INTO tabla1 ( col1,col2,col3,col4 ) VALUES ( 1,5.25,mund,c );
+INSERT INTO tabla1 ( col1,col2,col3,col4 ) VALUES ( 0,1.5,moo,k );
+INSERT INTO tabla1 ( col1,col2,col3,col4 ) VALUES ( 2,5.25,mund,c );
 
 INSERT INTO tabla1 ( col2,col3 ) VALUES ( 2,3 );
 

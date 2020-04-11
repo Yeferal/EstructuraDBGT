@@ -23,7 +23,10 @@ public:
     Grafica();
     Grafica(const Grafica& orig);
     void graficarTablas(ListaTabla &lista);
-    void graficarTabla(Tabla &ta);
+    void graficarTabla(Tabla &t);
+    void graficarTablaDatos(Tabla &ta);
+    void recorrerArbol(Nodo *raiz);
+    void generarRaiz(Nodo *raiz,int);
     void abrirImagen(string nombre);
     virtual ~Grafica();
 private:

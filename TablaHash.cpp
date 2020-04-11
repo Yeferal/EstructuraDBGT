@@ -146,5 +146,28 @@ bool TablaHash::isListaVacia(){
 
 
 TablaHash::~TablaHash() {
+    
+    if(!isListaVacia()){
+        while (!isListaVacia()) {
+        if (isListaVacia()) {
+            throw "La lista esta vacia";
+        }else if(primero==ultimo){
+            primero = NULL;
+            ultimo = NULL;
+            tamanio=0;
+        }else{
+
+            NodoLista* nodo = ultimo;
+            ultimo = ultimo->anterio;
+            ultimo->siguiente = NULL;
+            tamanio--;
+            delete nodo;
+        }
+        }
+        NodoLista* nodo = primero;
+        primero=NULL;
+        ultimo = NULL;
+        delete nodo;
+    }
 }
 

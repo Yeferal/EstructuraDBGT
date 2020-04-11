@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Arbol.o \
+	${OBJECTDIR}/ArchivoLog.o \
 	${OBJECTDIR}/Columna.o \
 	${OBJECTDIR}/Grafica.o \
 	${OBJECTDIR}/Hash.o \
@@ -79,6 +80,11 @@ ${OBJECTDIR}/Arbol.o: Arbol.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Arbol.o Arbol.cpp
+
+${OBJECTDIR}/ArchivoLog.o: ArchivoLog.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ArchivoLog.o ArchivoLog.cpp
 
 ${OBJECTDIR}/Columna.o: Columna.cpp
 	${MKDIR} -p ${OBJECTDIR}
