@@ -38,6 +38,7 @@ public:
     virtual ~Arbol();
     Nodo *raiz;
     Nodo *PadreAB, *sHijo, *predecesor, *abuelo, *hijoHijo;
+    int cantidadDatos;
 private:
 
 };

@@ -29,21 +29,22 @@ public:
     ListaTabla();
     ListaTabla(const ListaTabla& orig);
     void insertar(Tabla &tabla);
-    void quitarPrimero();
-    void quitarUltimo();
-    void quitarBloque(int numero);
     void borrarLista();
     void desplegarLista();
     ListaTabla getListaTamanio(int numero);
     bool isTamanio(int numero);
     Tabla &getPrimero();
-    void getSiguiente(int numero);
-    void getAnterior(int numero);
     Tabla &getUltimo();
     Tabla &getTabla(int numero);
     Tabla &getTablaN(string nombre);
+    bool isExisteTabla(string nombre);
     bool isListaVacia();
     virtual ~ListaTabla();
+    int totalDatos;
+    void getTotalDatosTodo();
+    void getTotalDatosTabla(int);
+    void getTotalFilasDB(int,int);
+    void getTotalColumnasDB();
 private:
     int tamanio;
 

@@ -17,9 +17,14 @@ public:
     Tabla(string);
     string GetNombre();
     virtual ~Tabla();
+    int getTotalDatos();
+    int getTotalFilas(int);
+    void recorrerArbol(Nodo *padre, string columna);
+//    int getTotalDatos();
     LIstaColumnas *listaC;
     TablaHash *tablaHash = new TablaHash();
     //Hash *funcionHash = new Hash();
+    int filas;
 private:
     string nombre;
     

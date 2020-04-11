@@ -223,7 +223,20 @@ Columna& LIstaColumnas::buscar(int numero) {
     //return NULL;
 }
 
-
+Columna& LIstaColumnas::buscarNombre(string titulo) {
+    NodoLista* actual;
+    actual = primero;
+    
+    while (actual!=NULL) {
+        if(actual->columna.GetTitulo()==titulo){
+            
+            return actual->columna;
+        }
+        actual = actual->siguiente;
+    }
+    
+    //return NULL;
+}
 
 
 LIstaColumnas::~LIstaColumnas() {

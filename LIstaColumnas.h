@@ -46,6 +46,7 @@ public:
     void borrarLista();
     void desplegarLista();
     Columna& buscar(int);
+    Columna& buscarNombre(string);
     LIstaColumnas getListaTamanio(int numero);
     bool isTamanio(int numero);
     Columna &getPrimero();
@@ -54,8 +55,9 @@ public:
     Columna &getUltimo();
     bool isListaVacia();
     virtual ~LIstaColumnas();
-private:
     int tamanio;
+private:
+    
 
 };
 

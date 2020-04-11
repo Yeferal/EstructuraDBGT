@@ -23,7 +23,11 @@ public:
     Pintar();
     Pintar(const Pintar& orig);
     void pintarTodaTabla(Tabla &t);
+    void pintarTabla(Tabla &t, LIstaColumnas &lisC);
+    void pintarTablaFiltrada(Tabla &t,LIstaColumnas &lisC,string,string);
+    void pintarTodaTablaFiltrada(Tabla &t,string,string);
     void recorreArbol(Nodo *padre,string col);
+    void recorreArbolFiltrado(Nodo *padre,string col,string condicion);
     virtual ~Pintar();
 private:
     ListaTupla *listaTup = new ListaTupla();

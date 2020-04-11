@@ -53,53 +53,6 @@ ListaTabla ListaTabla::getListaTamanio(int numero){
 
 }
 
-void ListaTabla::quitarPrimero(){
-    if (isListaVacia()) {
-        throw "La lista esta vacia";
-    }else if(primero==ultimo){
-        primero = NULL;
-        ultimo = NULL;
-        tamanio=0;
-    }else{
-        
-        NodoLista* nodo = primero;
-        primero = primero->siguiente;
-        primero->anterio = NULL;
-        tamanio--;
-        delete nodo;
-    }
-    
-}
-
-void ListaTabla::quitarUltimo(){
-    if (isListaVacia()) {
-        throw "La lista esta vacia";
-    }else if(primero==ultimo){
-        primero = NULL;
-        ultimo = NULL;
-        tamanio=0;
-    }else{
-        //Carta &aux = ultimo->carta;
-        //aux.pintar();
-        
-        NodoLista* nodo = ultimo;
-        ultimo = ultimo->anterio;
-        ultimo->siguiente = NULL;
-        
-        tamanio--;
-        delete nodo;
-    }
-
-}
-void ListaTabla::quitarBloque(int numero){
-    NodoLista* actual;
-    actual = primero;
-    for (int i = 0; i <numero; i++) {
-        quitarUltimo();
-    }
-    cout<<"Quito"<<"_______"<<endl;
-}
-
 void ListaTabla::borrarLista(){
     
 }
@@ -121,10 +74,9 @@ void ListaTabla::desplegarLista(){
         
         while (actual!=NULL) {
             Tabla &tabla = actual->tabla;
-            cout<<"NOmbre tabla: "<<tabla.GetNombre()<<endl;
+            cout<<actual->posicion<<".  "<<"Nombre tabla: "<<tabla.GetNombre()<<endl;
             actual = actual->siguiente;
         }
-        cout<<""<<endl;
         cout<<""<<endl;
     }else{
         cout<<"Esta vacia"<<endl;
@@ -165,56 +117,84 @@ Tabla& ListaTabla::getTablaN(string nombre) {
     
     while (actual!=NULL) {
         if(actual->tabla.GetNombre()==nombre){
-            cout<<"EXISTE LA TABLA"<<endl;
+            //cout<<"EXISTE LA TABLA"<<endl;
             return actual->tabla;
         }
         actual = actual->siguiente;
     }
 }
 
+bool ListaTabla::isExisteTabla(string nombre) {
+    NodoLista* actual;
+    actual = primero;
+    
+    while (actual!=NULL) {
+        if(actual->tabla.GetNombre()==nombre){
+            //cout<<"EXISTE LA TABLA"<<endl;
+            return true;
+        }
+        actual = actual->siguiente;
+    }
+    return false;
+}
+
+void ListaTabla::getTotalDatosTodo() {
+    NodoLista* actual;
+    actual = primero;
+    int total = 0;
+    while (actual!=NULL) {
+        total += actual->tabla.getTotalDatos();
+        cout<<"Total de datos: "<<actual->tabla.GetNombre()<<"  No. "<<actual->tabla.getTotalDatos()<<endl;
+        actual = actual->siguiente;
+    }
+    cout<<"\n\n===> Total de datos la DB: "<<total<<endl;
+}
+
+
+void ListaTabla::getTotalDatosTabla(int numero) {
+    NodoLista* actual;
+    actual = primero;
+    
+    while (actual!=NULL) {
+        if(actual->posicion==numero){
+            cout<<"Total de Datos de la DB: "<<actual->tabla.GetNombre()<<endl;
+            cout<<"Datos: "<<actual->tabla.getTotalDatos()<<endl;
+            break;
+        }
+        actual = actual->siguiente;
+    }
+}
+
+void ListaTabla::getTotalColumnasDB() {
+    NodoLista* actual;
+    actual = primero;
+    int total = 0;
+    while (actual!=NULL) {
+        total += actual->tabla.listaC->tamanio;
+        cout<<"Total de Columnas: "<<actual->tabla.GetNombre()<<"  No. "<<actual->tabla.listaC->tamanio<<endl;
+        actual = actual->siguiente;
+    }
+    cout<<"\n\n===> Total de Columnas la DB: "<<total<<endl;
+}
+
+void ListaTabla::getTotalFilasDB(int numero, int dato) {
+    NodoLista* actual;
+    actual = primero;
+    
+    while (actual!=NULL) {
+        if(actual->posicion==numero){
+            cout<<"Total de Filas de la tabla: "<<actual->tabla.GetNombre()<<endl;
+            cout<<"Filas: "<<actual->tabla.getTotalFilas(dato)<<endl;
+            break;
+        }
+        actual = actual->siguiente;
+    }
+}
 
 
 bool ListaTabla::isListaVacia(){
     
     return primero == NULL;
-}
-
-
-void ListaTabla::getAnterior(int numero){
-    NodoLista* actual;
-    actual = primero;
-    
-    while (actual!=NULL) {
-        if(actual->posicion==numero){
-            if(actual->anterio!=NULL){
-                break;
-            }else{
-                cout<<"LA CARTA ANTERIO DE LA NUMERO "<<numero<<"NO EXISTE: "<<endl;
-                break;
-            }
-            
-        }
-        actual = actual->siguiente;
-    }
-    
-}
-void ListaTabla::getSiguiente(int numero){
-    NodoLista* actual;
-    actual = primero;
-    
-    while (actual!=NULL) {
-        if(actual->posicion==numero){
-            if(actual->siguiente!=NULL){
-                Tabla &tabla = actual->siguiente->tabla;
-                
-                break;
-            }else{
-                cout<<"LA CARTA SIGUIENTE DE LA NUMERO "<<numero<<"NO EXISTE: "<<endl;
-                break;
-            }
-        }
-        actual = actual->siguiente;
-    }
 }
 
 ListaTabla::~ListaTabla() {

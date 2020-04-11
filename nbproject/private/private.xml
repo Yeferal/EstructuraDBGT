@@ -8,17 +8,20 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/ListaTabla.h</file>
-            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/Nodo.h</file>
+            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/Columna.cpp</file>
             <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/TablaHash.h</file>
-            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/ListaTupla.h</file>
-            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/Arbol.h</file>
             <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/LIstaColumnas.h</file>
-            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/Pintar.cpp</file>
             <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/Tupla.cpp</file>
-            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/ListaTupla.cpp</file>
-            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/LIstaColumnas.cpp</file>
+            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/Columna.h</file>
             <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/Pintar.h</file>
             <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/main.cpp</file>
+            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/Nodo.h</file>
+            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/ListaTupla.h</file>
+            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/Arbol.h</file>
+            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/Pintar.cpp</file>
+            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/ListaTupla.cpp</file>
+            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/LIstaColumnas.cpp</file>
+            <file>file:/home/yefer/NetBeansProjects/C++/EstructuraDB/Arbol.cpp</file>
         </group>
     </open-files>
 </project-private>

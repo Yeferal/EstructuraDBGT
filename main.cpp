@@ -26,6 +26,7 @@ string code;
 Grafica *g = new Grafica();
 Hash *h = new Hash();
 Pintar *pin = new Pintar();
+LIstaColumnas *listaCAux = new LIstaColumnas();
 
 void createTable(string consulta [], int logitu){
     int longitu = logitu;
@@ -69,55 +70,95 @@ void createTable(string consulta [], int logitu){
     listaTablas->insertar(tabla);
     listaTablas->desplegarLista();
     
-    //g->graficarTabla(ta);
+    g->graficarTabla(ta);
 }
 
 void selectTabla(string consulta [], int logitu){
+    cout<<"====adfadfadfad======"<<endl;
     int longitu = logitu;
+    cout<<"====adfadfadfad======"<<endl;
     int bandera = 1;
+    cout<<"====adfadfadfad======"<<endl;
     int bandera2 = 0;
+    cout<<"====adfadfadfad======"<<endl;
     int pesoT=0;
+    cout<<"====adfadfadfad======"<<endl;
     string nombreTabla;
-    Tabla t;
+    cout<<"====adfadfadfad======"<<endl;
+    cout<<"bien"<<endl;
     
+    cout<<"bien"<<endl;
+    cout<<consulta<<endl;
     bool salir = true;
-    if(consulta[bandera]=="*"){
-        
-        bandera = 3;
-        
-        nombreTabla = consulta[bandera];
+     bool existe = false;
+    
+        if(consulta[bandera]=="*"){
+            bandera = 3;
+            cout<<"bien"<<endl;
+            nombreTabla = consulta[bandera];
+            cout<<"bien"<<endl;
+            cout<<nombreTabla<<endl;
+        }else{
+            do{
+                string nombreCol = consulta[bandera];
+                Columna *c = new Columna(nombreCol,0);
+                listaCAux->insertar(*c);
+                
+    //            string nombreCol = consulta[bandera];
+    //            string dato = consulta[bandera2];
+    //
+    //            pesoT = h->encontrarPeso(dato);
+    //
+    //            tupla->modificar(dato,pesoT,nombreCol);
+    //            int p = h->funcionHash(dato);
+    //            ta.tablaHash->insertarNodoArbol(tupla->getNodoTupla(nombreCol),p);
 
-        cout<<nombreTabla<<endl;
-        t = listaTablas->getTablaN(nombreTabla);
-    }else{
-        do{
-//            string nombreCol = consulta[bandera];
-//            string dato = consulta[bandera2];
-//
-//            pesoT = h->encontrarPeso(dato);
-//
-//            tupla->modificar(dato,pesoT,nombreCol);
-//            int p = h->funcionHash(dato);
-//            ta.tablaHash->insertarNodoArbol(tupla->getNodoTupla(nombreCol),p);
+                if(consulta[bandera+1]=="FROM"){
+                    salir = false;
+                    bandera+= 2;
+                    //bandera=longitu;
+                }else{
+                    bandera++;
+                    //bandera2++;
+                }
+            }while(salir);
+            nombreTabla = consulta[bandera];
 
-            if(consulta[bandera+1]=="FROM"){
-                salir = false;
-                //bandera=longitu;
+        }
+     
+     if(listaTablas->isExisteTabla(nombreTabla)){
+         
+         Tabla &t = listaTablas->getTablaN(nombreTabla);
+         
+         
+         if(longitu==4){
+            cout<<"bien"<<endl;
+            pin->pintarTodaTabla(t);
+        }else if(longitu==8) {
+            cout<<"Tiene WHERE"<<endl;
+            string colum = consulta[longitu-3];
+            string condicion = consulta[longitu-1];
+            cout<<colum<<" = "<<condicion<<endl;
+            pin->pintarTodaTablaFiltrada(t,colum,condicion);
+        }else{
+            //listaCAux->desplegarLista();
+            if((bandera+1)==longitu){
+                pin->pintarTabla(t,*listaCAux);
             }else{
-                bandera++;
-                //bandera2++;
+                cout<<"Tiene WHERE"<<endl;
+                string colum = consulta[longitu-3];
+                string condicion = consulta[longitu-1];
+                cout<<colum<<" = "<<condicion<<endl;
+                pin->pintarTablaFiltrada(t,*listaCAux,colum,condicion);
             }
-        }while(salir);
+            
+        }
+     }else{
+         cout<<"LA TABLA NO EXISTE"<<endl;
+     }
 
-    }
-    
-    
-    if(longitu==4){
-        cout<<"bien"<<endl;
-        pin->pintarTodaTabla(t);
-    }else{
-        cout<<"mall"<<endl;
-    }
+
+     listaCAux->~LIstaColumnas();
     
     
     
@@ -126,6 +167,7 @@ void selectTabla(string consulta [], int logitu){
 
 
 void insertTable(string consulta [], int logitu){
+    
     int longitu = logitu;
     int bandera = 2;
     int bandera2 = 0;
@@ -174,24 +216,17 @@ void generarSplit(char* consulta, int cantidad){
     int tamanio =0;
     
     char *tex = NULL;
-    
     tex = new char[cantidad];
-    
     strcpy(tex,consulta);
-    
     int logituf = cantidad;
-
     char tex3 [logituf];
-    
     strcpy(tex3,tex);
     char * pibote = strtok(tex," ,\n");
-    
     while (pibote!=NULL) {
         tamanio++;
         pibote = strtok(NULL," ,\n");
         
     }
-    
     string tok[tamanio];
     tamanio=0;
     pibote = strtok(tex3," ,\n");
@@ -202,7 +237,10 @@ void generarSplit(char* consulta, int cantidad){
         pibote = strtok(NULL," ,\n");
         
     }
-    
+//    for (int i = 0; i < tamanio; i++) {
+//        cout<<tok[i]<<endl;
+//
+//    }
     
 
     
@@ -221,6 +259,7 @@ void generarSplit(char* consulta, int cantidad){
         
             cout<<"NO es una consulta"<<endl;
     }
+    //tex.
 }
 
 void generarGrafico(Nodo * raiz){
@@ -279,19 +318,54 @@ void menuReportes(){
         cout<<"|-----------------------------------------------------------------|"<<endl;
         cout<<"| 6.- Regresar al Menu Principal                                  |"<<endl;
         cout<<"|=================================================================|"<<endl;
+        cout<<"\nElige Opcion\n"<<endl;
         cin>>opcion;
+        cout<<"\n"<<endl;
         switch(opcion){
             case 1:
+                if (!listaTablas->isListaVacia()) {
+                    listaTablas->getTotalDatosTodo();
+                }else{
+                    cout<<"La DB esta vacia"<<endl;
+                }
                 
                 break;
             case 2:
-                
+                if(!listaTablas->isListaVacia()){
+                    int op;
+                    cout<<"Seleccione la tabla que desea"<<endl;
+                    listaTablas->desplegarLista();
+                    cin>>op;
+                    listaTablas->getTotalDatosTabla(op);
+                }else{
+                    cout<<"La DB esta vacia"<<endl;
+                }
                 break;
             case 3:
-                
+                if(!listaTablas->isListaVacia()){
+                    int op;
+                    int op2;
+                    cout<<"Seleccione la tabla que desea"<<endl;
+                    listaTablas->desplegarLista();
+                    cin>>op;
+                    cout<<"\nSeleccione el Tipo de Dato"<<endl;
+                    cout<<"1. Int"<<endl;
+                    cout<<"2. Double"<<endl;
+                    cout<<"3. String"<<endl;
+                    cout<<"4. Char"<<endl;
+                    cin>>op2;
+                    cout<<"\n"<<endl;
+                    listaTablas->getTotalFilasDB(op,op2);
+                }else{
+                    cout<<"La DB esta vacia"<<endl;
+                }
                 break;
             case 4:
-                
+                if (!listaTablas->isListaVacia()) {
+                    listaTablas->getTotalColumnasDB();
+                }else{
+                    cout<<"La DB esta vacia"<<endl;
+                }
                 break;
             case 5:
                 
@@ -315,13 +389,16 @@ void menuGraficas(){
     
     while (salir) {
         cout<<"\n\n\n"<<endl;
-        cout<<"|====================  Graficas GuatemayaDB  =====================|"<<endl;
-        cout<<"| 1.- Cantidad de Datos de toda la DB                             |"<<endl;
-        cout<<"|-----------------------------------------------------------------|"<<endl;
-        cout<<"| 2.- Cantidad de Datos por Tabla                                 |"<<endl;
-        cout<<"|-----------------------------------------------------------------|"<<endl;
-        cout<<"| 3.- Cantidad de Filas de un mismo tipo de dato de una Tabla     |"<<endl;
-        cout<<"|=================================================================|"<<endl;
+        cout<<"+====================  Graficas GuatemayaDB  =====================+"<<endl;
+        cout<<"| 1.- Estructura de Datos de toda la DB                           |"<<endl;
+        cout<<"+-----------------------------------------------------------------+"<<endl;
+        cout<<"| 2.- Estructura de Datos por Tabla                               |"<<endl;
+        cout<<"+----------------------------------------------------------- -----+"<<endl;
+        cout<<"| 3.- Estructura de Datos por Tabla                               |"<<endl;
+        cout<<"+-----------------------------------------------------------------+"<<endl;
+        cout<<"| 4.- Regresar al Menu Principal                                  |"<<endl;
+        cout<<"+=================================================================+"<<endl;
+        
         cin>>opcion;
         switch(opcion){
             case 1:
@@ -334,18 +411,9 @@ void menuGraficas(){
                 
                 break;
             case 4:
-                
-                break;
-            case 5:
-                
-                break;
-            case 6:
                 salir = false;
                 cout<<"\n\n\n"<<endl;
                 break;
-            default:
-                cout<<"\n\n\n\nOPCION NO VALIDA"<<endl;
-                opcion=1;
         }
     }
 
@@ -400,7 +468,8 @@ int main(int argc, char** argv) {
                 break;
             default:
                 cout<<"\n\n\n\nOPCION NO VALIDA"<<endl;
-                opcion=1;
+                
+                break;
         }
     }
 

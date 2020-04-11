@@ -50,8 +50,12 @@ void ListaTupla::desplegarLista() {
         while (actual!=NULL) {
             Nodo* aux = actual->registro;
             numCol = 0;
+            while(aux->registroIzquierda!=NULL){
+                aux = aux->registroIzquierda;
+            }
             while(aux!=NULL){
                 cout<<"|"<<aux->texto<<"\t"<<ends;
+                
                 aux = aux->registroDerecha;
                 numCol++;
             }
@@ -72,6 +76,50 @@ void ListaTupla::desplegarLista() {
 
 }
 
+void ListaTupla::desplegarListaColumna(LIstaColumnas& lis) {
+    NodoLista* actual;
+    actual = primero;
+    int numCol = 1;
+    string nombreCol;
+    
+    if (!isListaVacia()) {
+        
+        while (actual!=NULL) {
+            Nodo* aux = actual->registro;
+            numCol = 1;
+            while (lis.isTamanio(numCol)) {
+                nombreCol = lis.buscar(numCol).GetTitulo();
+                while(aux->registroIzquierda!=NULL){
+                    aux = aux->registroIzquierda;
+                }
+                while(aux!=NULL){
+                    if(aux->columna==nombreCol){
+                        cout<<"|"<<aux->texto<<"\t"<<ends;
+                        aux = aux->registroDerecha;
+                        
+                        break;
+                    }
+                    aux = aux->registroDerecha;
+                    
+                }
+                numCol++;
+            }
+            cout<<"|"<<endl;
+            for (int i = 0; i < lis.tamanio; i++) {
+                cout<<"+-------"<<ends;
+
+            }
+            cout<<"+"<<endl;
+            actual = actual->siguiente;
+            //numCol = 1;
+        }
+        cout<<""<<endl;
+    }else{
+        cout<<"La tabla es vacia"<<endl;
+    }
+}
+
+
 bool ListaTupla::isListaVacia() {
     return primero == NULL;
 }
@@ -79,5 +127,28 @@ bool ListaTupla::isListaVacia() {
 
 
 ListaTupla::~ListaTupla() {
+    if(!isListaVacia()){
+        while (!isListaVacia()) {
+            if (isListaVacia()) {
+                throw "La lista esta vacia";
+            }else if(primero==ultimo){
+                primero = NULL;
+                ultimo = NULL;
+                tamanio=0;
+            }else{
+
+                NodoLista* nodo = ultimo;
+                ultimo = ultimo->anterio;
+                ultimo->siguiente = NULL;
+                tamanio--;
+                delete nodo;
+            }
+        }
+        NodoLista* nodo = primero;
+        primero=NULL;
+        ultimo = NULL;
+        delete nodo;
+    }
+    
 }
 

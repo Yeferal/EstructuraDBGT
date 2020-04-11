@@ -15,6 +15,7 @@
 #define LISTATUPLA_H
 #include "Nodo.h"
 #include "Tupla.h"
+#include "LIstaColumnas.h"
 
 class ListaTupla {
 public:
@@ -39,6 +40,7 @@ public:
     ListaTupla(const ListaTupla& orig);
     void insertar(Nodo* r);
     void desplegarLista();
+    void desplegarListaColumna(LIstaColumnas &lis);
     bool isListaVacia();
     virtual ~ListaTupla();
 private:

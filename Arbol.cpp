@@ -19,7 +19,7 @@
 
 Arbol::Arbol() {
     raiz = NULL;
-    
+    cantidadDatos = 0;
 }
 
 Arbol::Arbol(const Arbol& orig) {
@@ -32,6 +32,7 @@ void Arbol::insertar(string texto, int peso, string columna){
         nuevoNodo->alturaIzquierda=0;
         nuevoNodo->isRaiz = 1;
         raiz = nuevoNodo;
+        cantidadDatos = 1;
         cout<<"Se inserto la raiz "<<raiz->texto<<endl;
     }else{
         recorrerInsertar(nuevoNodo,raiz);
@@ -52,6 +53,7 @@ void Arbol::insertarNodo(Nodo* nodo) {
         nuevoNodo->alturaIzquierda=0;
         nuevoNodo->isRaiz = 1;
         raiz = nuevoNodo;
+        cantidadDatos = 1;
         cout<<"Se inserto la raiz "<<raiz->texto<<endl;
     }else{
         recorrerInsertar(nuevoNodo,raiz);
@@ -76,7 +78,7 @@ void Arbol::recorrerInsertar(Nodo* nodo, Nodo* padre){
             temp->isRaiz = 0;
             padre->izquierda= temp;
             padre->alturaIzquierda =1;
-            
+            cantidadDatos++;
             cout<<"Se inserto el nodo "<<padre->izquierda->texto<<endl;
         }else{
             recorrerInsertar(temp,padre->izquierda);
@@ -92,6 +94,7 @@ void Arbol::recorrerInsertar(Nodo* nodo, Nodo* padre){
             temp->isRaiz = 0;
             padre->derecha= temp;
             padre->alturaDerecha=1;
+            cantidadDatos++;
             cout<<"Se inserto el nodo "<<padre->derecha->texto<<endl;
             
         }else{
