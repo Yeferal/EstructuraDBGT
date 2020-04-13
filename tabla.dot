@@ -17,12 +17,12 @@ tabla1->tabla1col3;
 tabla1col3[ shape=square];
 node [shape=record];
 nodetabla1col3[label = "<f1> 0 | <f2> 1 | <f3> 2 | <f4> 3 |"] 
-tabla1col3 -> nodetabla1col3:f3;
+tabla1col3 -> nodetabla1col3:f4;
 "tabla1col4"[label="col4"];
 tabla1->tabla1col4;
 tabla1col4[ shape=square];
 node [shape=record];
 nodetabla1col4[label = "<f1> 0 | <f2> 1 | <f3> 2 | <f4> 3 |"] 
-tabla1col4 -> nodetabla1col4:f4;
+tabla1col4 -> nodetabla1col4:f3;
 rankdir=LR;
 tabla1[ shape=square];GuatemayaDB[ shape=square];}

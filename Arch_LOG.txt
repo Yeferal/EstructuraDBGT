@@ -1,2 +1,19 @@
 Inicia la base de datos de: GuatemayaDB.
 
+
+
+
+CONSULTA :=====> 
+CREATE TABLE tabla1 ( col1 Int, col2 Double,col3 String,col4 Char )
+
+
+CONSULTA :=====> 
+INSERT INTO tabla1 ( col1,col2,col3,col4 ) VALUES ( 1,2.3,hola,a )
+
+
+CONSULTA :=====> 
+INSERT INTO tabla1 ( col1,col2,col3,col4 ) VALUES ( 2,5.25,mund,c )
+
+
+CONSULTA :=====> 
+INSERT INTO tabla1 ( col1,col2,col3,col4 ) VALUES ( 0,1.5,moo,k )
